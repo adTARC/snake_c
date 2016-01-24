@@ -1,26 +1,26 @@
 /*
-	Programmer				:	Aditya Sathish
+	Programmer			:	Aditya Sathish
 	Date Modified			:	20th January 2016
 	
-	File Name				:	mysnake.c
+	File Name			:	mysnake.c
 	
-	Description				:	Classic Snake Game based off Nokia's famous game during their 3310-era.
+	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
 	
-	NOTES					:	Tried and tested using Ubuntu 16.04 LTS and Ubuntu 15.10
+	NOTES				:	Tried and tested using Ubuntu 16.04 LTS and Ubuntu 15.10
 	
 	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
-								Make sure you download the curses.h header file into your linux machine.
-								To do this, run this command type in this (without the $ character):
-						
-								$ sudo apt-get install libncurses5-dev
-						
-								After you install it. Make sure you compile it with a rule to like it to ncurses
-						
-								$ gcc mysnake.c -lncurses
-						
+							Make sure you download the curses.h header file into your linux machine.
+							To do this, run this command type in this (without the $ character):
+					
+							$ sudo apt-get install libncurses5-dev
+					
+							After you install it. Make sure you compile it with a rule to like it to ncurses
+					
+							$ gcc mysnake.c -lncurses
+					
 	ORIGINAL WORK			:	petrvolny (http://github.com/petrvolny)
 	
-	LICENSING INFORMATION	:	GNU General Purpose License
+	LICENSING INFORMATION		:	GNU General Purpose License
 */
 
 #include <string.h>
@@ -34,8 +34,8 @@
 #define MAX_LENGTH 			200
 #define WIN_MSG0 			"Congratulations! You Just Won The Game"
 #define WIN_MSG1			"Your score was <%d>"
-#define WELCOME_MSG0 		":: Snake 2D by Aditya Sathish::"
-#define WELCOME_MSG1		":: Hit [ENTER] to START ::"
+#define WELCOME_MSG0 			":: Snake 2D by Aditya Sathish::"
+#define WELCOME_MSG1			":: Hit [ENTER] to START ::"
 #define LOST_MSG 			":: GAME OVER :: TRY AGAIN ::"
 #define P_STAMP				"2016 - Aditya Sathish"
 #define G_SCORE				"Score - %d"
@@ -44,7 +44,7 @@
 #define WALL_CHAR 			'*'
 
 /* GAME CONTROLS */
-#define UP 					1
+#define UP 				1
 #define DOWN 				2
 #define LEFT 				3
 #define RIGHT 				4
