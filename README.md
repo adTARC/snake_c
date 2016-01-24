@@ -1,4 +1,5 @@
-# SNAKE PROJECT
+# COMMAND LINE SNAKE GAME IN C
+This game has been tested to run only on Linux
 
 ### LANGUAGE
 	- C
