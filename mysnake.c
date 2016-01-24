@@ -6,7 +6,7 @@
 	
 	Description				:	Classic Snake Game based off Nokia's famous game during their 3310-era.
 	
-	NOTES					:	Tried and tested using Ubuntu 16.04 LTS
+	NOTES					:	Tried and tested using Ubuntu 16.04 LTS and Ubuntu 15.10
 	
 	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
 								Make sure you download the curses.h header file into your linux machine.
