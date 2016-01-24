@@ -1,4 +1,4 @@
-#	SNAKE PROJECT
+# SNAKE PROJECT
 
 ### LANGUAGE
 	- C
@@ -13,6 +13,9 @@
 
 ### AUTHOR
 	- Aditya Sathish
+	
+### CREDITS
+	- petrvolny (http://github.com/petrvolny)
 	
 ### DATE MODIFIED
 	- 20th January 2016
