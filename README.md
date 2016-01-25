@@ -1,4 +1,4 @@
-# COMMAND LINE SNAKE GAME IN C
+# SNAKE ASCII GAME
 This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LTS and 15.10)
 
 ### LANGUAGE
@@ -37,4 +37,15 @@ This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LT
 ### PLANNED FEATURES
 	- Bonus food (x50)
 	- Score multipliers
+
+### INSTALLATION INSTRUCTIONS
+	- This program uses curses.h header for some functions. Therefore, inorder to run this game,
+	- Make sure you download the curses.h header file into your linux machine.
+	- To do this, run this command (without the $ character):
+						
+	$ sudo apt-get install libncurses5-dev
+						
+	- After you install it. Make sure you compile it with a rule to link to the curses library
+						
+	$ gcc snake.c -lncurses
 	

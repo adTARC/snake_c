@@ -7,17 +7,7 @@
 	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
 	
 	NOTES				:	Tried and tested using Ubuntu 16.04 LTS
-	
-	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
-						Make sure you download the curses.h header file into your linux machine.
-						To do this, run this command type in this (without the $ character):
-						
-						$ sudo apt-get install libncurses5-dev
-						
-						After you install it. Make sure you compile it with a rule to like it to ncurses
-						
-						$ gcc mysnake.c -lncurses
-						
+					
 	ORIGINAL WORK			:	petrvolny (http://github.com/petrvolny)
 	
 	LICENSING INFORMATION		:	GNU General Purpose License
