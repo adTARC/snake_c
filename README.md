@@ -32,11 +32,11 @@ This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LT
 	- Contains only ASCII characters
 	- Speeds up after every point
 	- Scoreboard
-	- Ability to restart game from end screen and win screen
 
 ### PLANNED FEATURES
 	- Bonus food (x50)
 	- Score multipliers
+	- Ability to restart game from end screen and win screen
 
 ### INSTALLATION INSTRUCTIONS
 	- This program uses curses.h header for some functions. Therefore, inorder to run this game,
