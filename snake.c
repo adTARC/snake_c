@@ -35,8 +35,9 @@
 #define WIN_MSG0 			"Congratulations! You Just Won The Game"
 #define WIN_MSG1			"Your score was <%d>"
 #define WELCOME_MSG0 			":: Snake 2D by Aditya Sathish::"
-#define WELCOME_MSG1			":: Hit [ENTER] to START ::"
-#define LOST_MSG 			":: GAME OVER :: TRY AGAIN ::"
+#define WELCOME_MSG1			":: Press any key to start to START ::"
+#define LOST_MSG0 			":: GAME OVER ::"
+#define LOST_MSG1			":: To play again, press [P] and to exit press [E]"
 #define P_STAMP				"2016 - Aditya Sathish"
 #define G_SCORE				"Score - %d"
 #define SNAKE_CHAR 			'O'
@@ -245,15 +246,17 @@ void winner_splash() {
 /* DRAW THE SPLASH SCREEN */
 void welcome_splash() {
     clear();
-    mvprintw(game_row/2-1, game_col/2-strlen(WELCOME_MSG0)/2, WELCOME_MSG0);
-    mvprintw(game_row/2, game_col/2-strlen(WELCOME_MSG1)/2, WELCOME_MSG1);
+    mvprintw(game_row/2-2, game_col/2-strlen(WELCOME_MSG0)/2, WELCOME_MSG0);
+    mvprintw(game_row/2-1, game_col/2-strlen(WELCOME_MSG1)/2, WELCOME_MSG1); 
+    mvprintw(game_row/2, game_col/2-strlen(LOSE_MSG1)/2, LOSE_MSG1);
     refresh();
 }
 
 /* DRAW THE GAME OVER SCREEN */
 void lose_splash() {
     clear();
-    mvprintw(game_row/2, game_col/2-strlen(LOST_MSG)/2, LOST_MSG);
+    mvprintw(game_row/2 - 1, game_col/2-strlen(LOST_MSG0)/2, LOST_MSG0);
+    mvprintw(game_row/2, game_col/2-strlen(LOST_MSG1)/2, LOST_MSG1)
     refresh();
 }
 
@@ -278,19 +281,29 @@ void game_state_update() {
 	
 	
     if (snakeLength == MAX_LENGTH-1) {
+    	char c;
         winner_splash();
         timeout(-1);
-        getch();
-        endwin();
-        exit(0);
+        c = getch();
+        if(c == 'P')
+		goto restart;
+	else if(c == 'E') {
+		endwin();
+		exit(0);
+	}
     }
    
     if ((mvinch(snake[0].y, snake[0].x) & A_CHARTEXT) == WALL_CHAR) {
+    	char c;
         lose_splash();
         timeout(-1);
-        getch();
-        endwin();
-        exit(0);
+	c = getch();
+        if(c == 'P')
+		goto restart;
+	else if(c == 'E') {
+		endwin();
+		exit(0);
+	}
     }
 }
 
@@ -314,8 +327,8 @@ void move_snake_full() {
 
 /* MAIN FUNCTION */
 int main() {
+restart:
     char c;
-
     init_game();
     welcome_splash();
     getch();
