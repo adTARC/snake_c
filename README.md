@@ -1,5 +1,5 @@
 # COMMAND LINE SNAKE GAME IN C
-This game has been tested to run only on Linux
+This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LTS and 15.10)
 
 ### LANGUAGE
 	- C
@@ -31,9 +31,9 @@ This game has been tested to run only on Linux
 ### SOME FEATURES
 	- Speeds up after every point
 	- Scoreboard
+	- Ability to restart game from end screen and win screen
 
 ### PLANNED FEATURES
-	- Ability to restart game from end screen and win screen
 	- Bonus food (x50)
 	- Score multipliers
 	
