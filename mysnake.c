@@ -1,26 +1,26 @@
 /*
-	Programmer				:	Aditya Sathish
-	Date Modified			:	20th January 2016
+	Programmer			:	Aditya Sathish
+	Date Modified			:	25th January 2016
 	
-	File Name				:	mysnake.c
+	File Name			:	snake.c
 	
-	Description				:	Classic Snake Game based off Nokia's famous game during their 3310-era.
+	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
 	
-	NOTES					:	Tried and tested using Ubuntu 16.04 LTS
+	NOTES				:	Tried and tested using Ubuntu 16.04 LTS
 	
 	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
-								Make sure you download the curses.h header file into your linux machine.
-								To do this, run this command type in this (without the $ character):
+						Make sure you download the curses.h header file into your linux machine.
+						To do this, run this command type in this (without the $ character):
 						
-								$ sudo apt-get install libncurses5-dev
+						$ sudo apt-get install libncurses5-dev
 						
-								After you install it. Make sure you compile it with a rule to like it to ncurses
+						After you install it. Make sure you compile it with a rule to like it to ncurses
 						
-								$ gcc mysnake.c -lncurses
+						$ gcc mysnake.c -lncurses
 						
 	ORIGINAL WORK			:	petrvolny (http://github.com/petrvolny)
 	
-	LICENSING INFORMATION	:	GNU General Purpose License
+	LICENSING INFORMATION		:	GNU General Purpose License
 */
 
 #include <string.h>
@@ -34,8 +34,8 @@
 #define MAX_LENGTH 			200
 #define WIN_MSG0 			"Congratulations! You Just Won The Game"
 #define WIN_MSG1			"Your score was <%d>"
-#define WELCOME_MSG0 		":: Snake 2D by Aditya Sathish::"
-#define WELCOME_MSG1		":: Hit [ENTER] to START ::"
+#define WELCOME_MSG0 			":: Snake 2D by Aditya Sathish::"
+#define WELCOME_MSG1			":: Hit [ENTER] to START ::"
 #define LOST_MSG 			":: GAME OVER :: TRY AGAIN ::"
 #define P_STAMP				"2016 - Aditya Sathish"
 #define G_SCORE				"Score - %d"
@@ -44,23 +44,23 @@
 #define WALL_CHAR 			'*'
 
 /* GAME CONTROLS */
-#define UP 					1
+#define UP 				1
 #define DOWN 				2
 #define LEFT 				3
 #define RIGHT 				4
 
 /* CREATING STRUCTURES FOR THE SNAKE AND THE FOOD */
-typedef struct SnakePart_ {
+typedef struct _snake {
     int x;
     int y;
-} SnakePart;
+} snake_body;
 
-typedef struct Food_ {
+typedef struct _food {
     int x;
     int y;
-} Food;
-Food food;
-SnakePart snake[MAX_LENGTH];
+} food_body;
+food_body food;
+snake_body snake[MAX_LENGTH];
 
 /* CREATING SOME VARIABLES */
 int direction;
@@ -127,7 +127,7 @@ int init_game(void) {
 }
 
 /* ADDING FOOD AT A RANDOM POINT ON SCREEN */
-void addFood() {
+void add_food() {
     int x,y;
     
     // Getting random values with respect to row and column respectively
@@ -146,7 +146,7 @@ void addFood() {
 }
 
 /* DRAWING FOOD */
-void drawFood() {
+void draw_food() {
 	// Setting the food character at the position defined by the food structure
     move(food.y, food.x);
     
@@ -155,7 +155,7 @@ void drawFood() {
 }
 
 /* SETTING UP THE SNAKE DRAWABLE */
-void initSnake() {
+void init_snake() {
 	// How the snake is located when it starts
     snake[1].x = 2;
     snake[1].y = game_row/2;
@@ -166,7 +166,7 @@ void initSnake() {
 }
 
 /* DRAWING POSITION OF SNAKE */
-void drawSnake() {
+void draw_snake() {
     int i=0;
     
     // Translation of snake as long as it stays in the bounds of the window
@@ -178,7 +178,7 @@ void drawSnake() {
 }
 
 /* MOVEMENT OF SNAKE */
-void shiftSnake() {
+void move_snake() {
     int i=0;
     
     // Helping the snake move
@@ -188,10 +188,10 @@ void shiftSnake() {
 }
 
 /* MOVING THE SNAKE HEAD BASED ON KEYBOARD INPUT */
-void addHead() {
+void move_snake_head() {
 
-     SnakePart origHead = snake[0];
-     shiftSnake();
+     snake_body origHead = snake[0];
+     move_snake();
      switch (direction) {
         case UP:
             origHead.y--;
@@ -210,14 +210,14 @@ void addHead() {
 }
 
 /* REMOVING TAIL AS SNAKE MOVES  */
-void removeTail() {
+void move_snake_tail() {
     mvaddch(snake[snakeLength].y, snake[snakeLength].x, ' ');
     snake[snakeLength].x = -1;
     snake[snakeLength].y = -1;
 }
 
 /* CONVERTING KEYBOARD INPUT */
-void setDirection(char c) {
+void map_control(char c) {
     switch(c) {
         case 'w':
             direction = UP;
@@ -235,7 +235,7 @@ void setDirection(char c) {
 }
 
 /* DRAW THE WINNER SCREEN */
-void showWinner() {
+void winner_splash() {
     clear();
     mvprintw(game_row/2-1, game_col/2-strlen(WIN_MSG0)/2, WIN_MSG0);
     mvprintw(game_row/2, game_col/2-strlen(WIN_MSG1)/2, WIN_MSG1);
@@ -243,7 +243,7 @@ void showWinner() {
 }
 
 /* DRAW THE SPLASH SCREEN */
-void showWelcome() {
+void welcome_splash() {
     clear();
     mvprintw(game_row/2-1, game_col/2-strlen(WELCOME_MSG0)/2, WELCOME_MSG0);
     mvprintw(game_row/2, game_col/2-strlen(WELCOME_MSG1)/2, WELCOME_MSG1);
@@ -251,14 +251,14 @@ void showWelcome() {
 }
 
 /* DRAW THE GAME OVER SCREEN */
-void showLose() {
+void lose_splash() {
     clear();
     mvprintw(game_row/2, game_col/2-strlen(LOST_MSG)/2, LOST_MSG);
     refresh();
 }
 
 /* DRAWING WALLS */
-void drawLevel() {
+void level_create() {
     for (int i=0; i<game_row; i++) {
         mvaddch(i, 0, WALL_CHAR);
         mvaddch(i, game_col-1, WALL_CHAR);
@@ -272,13 +272,13 @@ void drawLevel() {
 }
 
 /* CHECKING GAME STATE (AFTER EVERY STEP) */
-void checkGame() {
+void game_state_update() {
 
 	mvprintw(game_row, game_col/2-strlen(G_SCORE)/2, G_SCORE,score);	
 	
 	
     if (snakeLength == MAX_LENGTH-1) {
-        showWinner();
+        winner_splash();
         timeout(-1);
         getch();
         endwin();
@@ -286,7 +286,7 @@ void checkGame() {
     }
    
     if ((mvinch(snake[0].y, snake[0].x) & A_CHARTEXT) == WALL_CHAR) {
-        showLose();
+        lose_splash();
         timeout(-1);
         getch();
         endwin();
@@ -295,20 +295,20 @@ void checkGame() {
 }
 
 /* REFRESH - SNAKE MOVEMENTS */
-void moveSnake() {
-    addHead();
-    checkGame();
+void move_snake_full() {
+    move_snake_head();
+    game_state_update();
     mvaddch(snake[0].y, snake[0].x, SNAKE_CHAR);
     if (snake[0].x == food.x && snake[0].y == food.y) {
         snakeLength++;
-        addFood();
+        add_food();
         score += 10;
         if(speed != 60)
         	speed -= 5;
         else
         	speed = 60;
     } else {
-        removeTail();
+        move_snake_tail();
 	}
 }
 
@@ -317,26 +317,26 @@ int main() {
     char c;
 
     init_game();
-    showWelcome();
+    welcome_splash();
     getch();
     clear();
-    initSnake();
-    drawLevel();
-    drawSnake();
-    addFood();
+    init_snake();
+    level_create();
+    draw_snake();
+    add_food();
     refresh();
 
     // Main game loop
     while (1) {
         timeout(speed);
         c = getch();
-        setDirection(c);
+        map_control(c);
         clear();
-        drawLevel();
-        moveSnake();
-        checkGame();
-        drawSnake();
-        drawFood();
+        level_create();
+        move_snake_full();
+        game_state_update();
+        draw_snake();
+        draw_food();
         refresh();
     }
 }
