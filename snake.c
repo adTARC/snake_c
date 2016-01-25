@@ -1,5 +1,6 @@
 /*
 	Programmer			:	Aditya Sathish
+<<<<<<< HEAD:snake.c
 	Date Modified			:	25th January 2016
 	
 	File Name			:	snake.c
@@ -7,6 +8,25 @@
 	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
 	
 	NOTES				:	Tried and tested using Ubuntu 16.04 LTS
+=======
+	Date Modified			:	20th January 2016
+	
+	File Name			:	mysnake.c
+	
+	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
+	
+	NOTES				:	Tried and tested using Ubuntu 16.04 LTS and Ubuntu 15.10
+	
+	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
+							Make sure you download the curses.h header file into your linux machine.
+							To do this, run this command type in this (without the $ character):
+					
+							$ sudo apt-get install libncurses5-dev
+					
+							After you install it. Make sure you compile it with a rule to like it to ncurses
+					
+							$ gcc mysnake.c -lncurses
+>>>>>>> 5235a40918b3b95bd606a3c71e57ca86ff9ef641:mysnake.c
 					
 	ORIGINAL WORK			:	petrvolny (http://github.com/petrvolny)
 	
@@ -25,9 +45,14 @@
 #define WIN_MSG0 			"Congratulations! You Just Won The Game"
 #define WIN_MSG1			"Your score was <%d>"
 #define WELCOME_MSG0 			":: Snake 2D by Aditya Sathish::"
+<<<<<<< HEAD:snake.c
 #define WELCOME_MSG1			":: Press any key to start to START ::"
 #define LOST_MSG0 			":: GAME OVER ::"
 #define LOST_MSG1			":: To play again, press [P] and to exit press [E]"
+=======
+#define WELCOME_MSG1			":: Hit [ENTER] to START ::"
+#define LOST_MSG 			":: GAME OVER :: TRY AGAIN ::"
+>>>>>>> 5235a40918b3b95bd606a3c71e57ca86ff9ef641:mysnake.c
 #define P_STAMP				"2016 - Aditya Sathish"
 #define G_SCORE				"Score - %d"
 #define SNAKE_CHAR 			'O'
