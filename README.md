@@ -29,6 +29,7 @@ This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LT
 	- w,a,s,d for moving the snake around
 	
 ### SOME FEATURES
+	- Contains only ASCII characters
 	- Speeds up after every point
 	- Scoreboard
 	- Ability to restart game from end screen and win screen
