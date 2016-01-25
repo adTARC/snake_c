@@ -1,6 +1,6 @@
 /*
 	Programmer			:	Aditya Sathish
-<<<<<<< HEAD:snake.c
+
 	Date Modified			:	25th January 2016
 	
 	File Name			:	snake.c
@@ -8,7 +8,7 @@
 	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
 	
 	NOTES				:	Tried and tested using Ubuntu 16.04 LTS
-=======
+
 	Date Modified			:	20th January 2016
 	
 	File Name			:	mysnake.c
