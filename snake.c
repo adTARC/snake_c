@@ -44,14 +44,11 @@
 #define WIN_MSG0 			"Congratulations! You Just Won The Game"
 #define WIN_MSG1			"Your score was <%d>"
 #define WELCOME_MSG0 			":: Snake 2D by Aditya Sathish::"
-<<<<<<< HEAD:snake.c
 #define WELCOME_MSG1			":: Press any key to start to START ::"
 #define LOST_MSG0 			":: GAME OVER ::"
 #define LOST_MSG1			":: To play again, press [P] and to exit press [E]"
-=======
 #define WELCOME_MSG1			":: Hit [ENTER] to START ::"
 #define LOST_MSG 			":: GAME OVER :: TRY AGAIN ::"
->>>>>>> 5235a40918b3b95bd606a3c71e57ca86ff9ef641:mysnake.c
 #define P_STAMP				"2016 - Aditya Sathish"
 #define G_SCORE				"Score - %d"
 #define SNAKE_CHAR 			'O'
