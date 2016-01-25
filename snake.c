@@ -18,15 +18,14 @@
 	NOTES				:	Tried and tested using Ubuntu 16.04 LTS and Ubuntu 15.10
 	
 	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
-							Make sure you download the curses.h header file into your linux machine.
-							To do this, run this command type in this (without the $ character):
+						Make sure you download the curses.h header file into your linux machine.
+						To do this, run this command type in this (without the $ character):
 					
-							$ sudo apt-get install libncurses5-dev
+						$ sudo apt-get install libncurses5-dev
 					
-							After you install it. Make sure you compile it with a rule to like it to ncurses
+						After you install it. Make sure you compile it with a rule to like it to ncurses
 					
-							$ gcc mysnake.c -lncurses
->>>>>>> 5235a40918b3b95bd606a3c71e57ca86ff9ef641:mysnake.c
+						$ gcc mysnake.c -lncurses
 					
 	ORIGINAL WORK			:	petrvolny (http://github.com/petrvolny)
 	
