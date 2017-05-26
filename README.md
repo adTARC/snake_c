@@ -11,6 +11,7 @@ This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LT
 	- time.h
 	- math.h
 	- curses.h
+	- snake.h
 
 ### AUTHOR
 	- Aditya Sathish
@@ -18,8 +19,10 @@ This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LT
 ### CREDITS
 	- petrvolny (http://github.com/petrvolny)
 	
+### DATE CREATED
+	- 16th January 2016
 ### DATE MODIFIED
-	- 20th January 2016
+	- 26th May 2017
 
 ### DESCRIPTION	
 	- This is a clone of the classic game using the C language. It runs using the curses library.
@@ -47,5 +50,5 @@ This game has been tested to run only on Linux (I tested this on Ubuntu 16.04 LT
 						
 	- After you install it. Make sure you compile it with a rule to link to the curses library
 						
-	$ gcc snake.c -lncurses
+	$ gcc main.c snake.c -lncurses
 	

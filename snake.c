@@ -1,101 +1,40 @@
-/*
-	Programmer			:	Aditya Sathish
-
-	Date Modified			:	25th January 2016
-	
-	File Name			:	snake.c
-	
-	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
-	
-	NOTES				:	Tried and tested using Ubuntu 16.04 LTS
-
-	Date Modified			:	20th January 2016
-	
-	File Name			:	mysnake.c
-	
-	Description			:	Classic Snake Game based off Nokia's famous game during their 3310-era.
-	
-	NOTES				:	Tried and tested using Ubuntu 16.04 LTS and Ubuntu 15.10
-	
-	HOW TO COMPILE			:	This program uses curses.h header for some functions. Therefore, inorder to run this game,
-						Make sure you download the curses.h header file into your linux machine.
-						To do this, run this command type in this (without the $ character):
-					
-						$ sudo apt-get install libncurses5-dev
-					
-						After you install it. Make sure you compile it with a rule to like it to ncurses
-					
-						$ gcc mysnake.c -lncurses
-					
-	ORIGINAL WORK			:	petrvolny (http://github.com/petrvolny)
-	
-	LICENSING INFORMATION		:	GNU General Purpose License
-*/
-
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
 #include <curses.h>
+#include "snake.h"
 
-/* WINDOW INFORMATION */
-#define MAX_LENGTH 			200
-#define WIN_MSG0 			"Congratulations! You Just Won The Game"
-#define WIN_MSG1			"Your score was <%d>"
-#define WELCOME_MSG0 			":: Snake 2D by Aditya Sathish::"
-#define WELCOME_MSG1			":: Press any key to START ::"
-#define LOST_MSG0 			":: GAME OVER ::"
-#define LOST_MSG1			":: Press any key to EXIT ::"
-#define P_STAMP				"2016 - Aditya Sathish"
-#define G_SCORE				"Score - %d"
-#define SNAKE_CHAR 			'O'
-#define FOOD_CHAR 			'@'
-#define WALL_CHAR 			'*'
-
-/* GAME CONTROLS */
-#define UP 				1
-#define DOWN 				2
-#define LEFT 				3
-#define RIGHT 				4
-
-/* CREATING STRUCTURES FOR THE SNAKE AND THE FOOD */
-typedef struct _snake {
-    int x;
-    int y;
-} snake_body;
-
-typedef struct _food {
-    int x;
-    int y;
-} food_body;
-food_body food;
-snake_body snake[MAX_LENGTH];
-
-/* CREATING SOME VARIABLES */
-int direction;
-int snakeLength = 1;
-int row, col;
-int game_row, game_col;
-int score = 0;
-int speed = 100;
-
-/* GAME INITIALIZATION */
+/* ---------------------- EXTERNAL VARIABLE DEFINITIONS ---------------------------- */
+/* direction: holds the value for the keyboard input */
+extern int direction;
+/* snakeLength: the length of the snake. It increments by one after each food score */
+extern int snakeLength = 1;
+/* row/col: the variables used to hold the number of rows and columns at the start of the terminal session */
+extern int row, col;
+/* game_row/game_col: it is the effective window size of the game, excluding the space for the text and scoreboard */
+extern int game_row, game_col;
+/* score: the score is assigned to this variable */
+extern int score = 0;
+/* speed: the starting speed of the snake */
+extern int speed = 100;
+/* ---------------------------------------------------------------------------------- */
+/* ------------------------------ FUNCTION DEFINITION ------------------------------- */
 int init_game(void) {
-
-	// 	Seeding the Number Generator with Current System Time
+	// Seeding the random number generator (with the current time)
     srand(time(NULL));
     
-    // 	Setting the snake to be off the window then starting
+    // Placing the snake outside the window on startup
     for (int i=0; i<MAX_LENGTH; i++) {
         snake[i].x = -1;
         snake[i].y = -1;
     }
 
-	// 	Initalizing ncurses Structures and Terminfo Files 
+	// 	Initalizing ncurses <structures> and <terminfo> files 
     initscr();
     
-    // 	Checking if terminal supports colors. If not, the game is ended
+    // 	Checking if terminal supports colors. The game won't run without color
 	if(has_colors() == FALSE)
 	{	endwin();
 		printf("Your terminal does not support color\n");
@@ -103,7 +42,7 @@ int init_game(void) {
 	}
 
 	/* 	Finding the number of columns and rows in a given window
-		- stdscr is the pointer to the window where the program is running
+		- stdscr is the pointer to the window where the program is running (current process)
 		- row is the variable we created to store the number of rows of the terminal
 		- col is the variable we created to store the number of columns of the terminal
 	*/
@@ -136,7 +75,6 @@ int init_game(void) {
     color_set(1, NULL);
 }
 
-/* ADDING FOOD AT A RANDOM POINT ON SCREEN */
 void add_food() {
     int x,y;
     
@@ -324,31 +262,4 @@ void move_snake_full() {
         move_snake_tail();
 	}
 }
-
-/* MAIN FUNCTION */
-int main() {
-    char c;
-    init_game();
-    welcome_splash();
-    getch();
-    clear();
-    init_snake();
-    level_create();
-    draw_snake();
-    add_food();
-    refresh();
-
-    // Main game loop
-    while (1) {
-        timeout(speed);
-        c = getch();
-        map_control(c);
-        clear();
-        level_create();
-        move_snake_full();
-        game_state_update();
-        draw_snake();
-        draw_food();
-        refresh();
-    }
-}
+/* ---------------------------------------------------------------------------------- */
